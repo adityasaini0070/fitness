@@ -6,19 +6,21 @@ import com.project.fitness.model.Activity;
 import com.project.fitness.model.User;
 import com.project.fitness.repository.ActivityRepository;
 import com.project.fitness.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
+
+    public ActivityService(ActivityRepository activityRepository, UserRepository userRepository) {
+        this.activityRepository = activityRepository;
+        this.userRepository = userRepository;
+    }
 
     public ActivityResponse trackActivity(ActivityRequest request) {
 

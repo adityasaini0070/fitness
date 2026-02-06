@@ -37,6 +37,10 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private UserRole role = UserRole.USER;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd['T'][ ]HH:mm:ss[.SSSSSS]")
