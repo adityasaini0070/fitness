@@ -36,11 +36,11 @@ Java Spring Boot PostgreSQL License
 ### High-Level Architecture
 ```mermaid
 graph TD
-    A[REST Client] --> B[Controllers (Spring MVC)]
-    B --> C[Service Layer]
-    C --> D[Repositories (Spring Data JPA)]
-    D --> E[(PostgreSQL JSONB)]
-    F[Auth Provider (JWT)] -.-> B
+    A["REST Client"] --> B["Controllers (Spring MVC)"]
+    B --> C["Service Layer"]
+    C --> D["Repositories (Spring Data JPA)"]
+    D --> E["PostgreSQL (JSONB)"]
+    F["Auth Provider (JWT)"] -.-> B
 ```
 
 ### Logical Data Layer
