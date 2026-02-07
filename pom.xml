@@ -87,24 +87,12 @@
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-
-
-
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<image>
-						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
-					</image>
-					<docker>
-						<host>npipe:////./pipe/docker_engine</host>
-					</docker>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
