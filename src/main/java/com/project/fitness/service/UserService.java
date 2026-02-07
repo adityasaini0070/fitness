@@ -1,5 +1,6 @@
 package com.project.fitness.service;
 
+import com.project.fitness.dto.LoginRequest;
 import com.project.fitness.dto.RegisterRequest;
 import com.project.fitness.dto.UserResponse;
 import com.project.fitness.model.User;
@@ -41,5 +42,15 @@ public class UserService {
         response.setCreatedAt(savedUser.getCreatedAt());
         response.setUpdatedAt(savedUser.getUpdatedAt());
         return response;
+    }
+
+    public User authenticate(LoginRequest loginRequest) {
+        User user = userRepository.findByEmail(loginRequest.getEmail());
+        if (user == null)
+            throw new RuntimeException("Invalid email");
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+        return user;
     }
 }

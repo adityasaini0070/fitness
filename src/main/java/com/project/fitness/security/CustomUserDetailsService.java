@@ -6,10 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -27,7 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             UUID id = UUID.fromString(idString);
             user = userRepository.findById(id).orElse(null);
         } catch (IllegalArgumentException e) {
-            // Fallback to email if it's not a UUID (for initial transition or other uses)
             user = userRepository.findByEmail(idString);
         }
 

@@ -1,5 +1,6 @@
 package com.project.fitness.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -54,9 +55,15 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
 
-    public String getUsernameFromToken(String jwt) {
+    public String getUserIdFromToken(String jwt) {
         return Jwts.parser().verifyWith(key())
                 .build().parseSignedClaims(jwt)
                 .getPayload().getSubject();
+    }
+
+    public Claims getAllClaims(String jwt){
+        return Jwts.parser().verifyWith(key())
+                .build().parseSignedClaims(jwt)
+                .getPayload();
     }
 }
