@@ -99,6 +99,9 @@
 					<image>
 						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
 					</image>
+					<docker>
+						<host>npipe:////./pipe/docker_engine</host>
+					</docker>
 				</configuration>
 			</plugin>
 		</plugins>
