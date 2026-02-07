@@ -102,6 +102,32 @@ The system leverages PostgreSQL's document-store capabilities:
    ```
 4. Access the application at `http://localhost:8082`
 
+## 🐳 Docker Deployment
+### 1. Build the Image
+```bash
+docker build -t fitness .
+```
+
+### 2. Run the Container
+The application requires database environment variables. You can pass them using the `-e` flag:
+
+```bash
+docker run -p 8082:8082 \
+  -e DB_URL=jdbc:postgresql://host.docker.internal:5432/fitness \
+  -e DB_USER=your_username \
+  -e DB_PWD=your_password \
+  fitness
+```
+
+> [!TIP]
+> Use `host.docker.internal` as the DB host to connect to a PostgreSQL instance running on your host machine (Windows/Mac).
+
+### Using Environment File
+Alternatively, create a `.env` file (see `.env.example`) and run:
+```bash
+docker run -p 8082:8082 --env-file .env fitness
+```
+
 ## 🗄️ Database Schema
 ### Core Tables
 -   **users** - User accounts with roles and UUID-based identification.
