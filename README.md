@@ -1,4 +1,6 @@
 # 🏃‍♂️ Fitness Tracker API
+![Build](https://github.com/adityasaini0070/fitness/actions/workflows/maven.yml/badge.svg)
+
 A modern, high-performance REST API for tracking fitness activities and providing personalized recommendations. Built with **Java 21**, **Spring Boot 3.4**, and **PostgreSQL**.
 
 ## 🌐 Live Links
@@ -78,6 +80,9 @@ The system leverages PostgreSQL's document-store capabilities:
 | `timestamp` | | `sets_reps` |
 
 *Result: A single table can store data for hundreds of different activity types without schema changes.*
+
+## 📦 Why JSONB?
+Fitness metrics vary drastically across activity types. Using PostgreSQL JSONB avoids schema churn while enabling indexed search using GIN indexes.
 
 ## 🛠️ Technology Stack
 ### Backend
