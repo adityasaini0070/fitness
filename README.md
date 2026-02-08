@@ -1,5 +1,4 @@
 # 🏃‍♂️ Fitness Tracker API
-![Build](https://github.com/adityasaini0070/fitness/actions/workflows/maven.yml/badge.svg)
 
 A modern, high-performance REST API for tracking fitness activities and providing personalized recommendations. Built with **Java 21**, **Spring Boot 3.4**, and **PostgreSQL**.
 
