@@ -1,6 +1,11 @@
 # 🏃‍♂️ Fitness Tracker API
 A modern, high-performance REST API for tracking fitness activities and providing personalized recommendations. Built with **Java 21**, **Spring Boot 3.4**, and **PostgreSQL**.
 
+## 🌐 Live Links
+- **🚀 Deployed URL**: [https://fitness-zpc6.onrender.com](https://fitness-zpc6.onrender.com)
+- **📖 Swagger Documentation**: [https://fitness-zpc6.onrender.com/swagger-ui/index.html#/](https://fitness-zpc6.onrender.com/swagger-ui/index.html#/)
+- **🐳 DockerHub Image**: [adityasaini0070/fitness](https://hub.docker.com/r/adityasaini0070/fitness)
+
 Java Spring Boot PostgreSQL License
 
 📋 Table of Contents
@@ -36,11 +41,31 @@ Java Spring Boot PostgreSQL License
 ### High-Level Architecture
 ```mermaid
 graph TD
-    A["REST Client"] --> B["Controllers (Spring MVC)"]
-    B --> C["Service Layer"]
-    C --> D["Repositories (Spring Data JPA)"]
-    D --> E["PostgreSQL (JSONB)"]
-    F["Auth Provider (JWT)"] -.-> B
+    subgraph Client Layer
+        A["External REST Client"]
+    end
+
+    subgraph API Layer
+        B["Spring Boot Controller"]
+        F["JWT Security Provider"]
+    end
+
+    subgraph Business Layer
+        C["Service Layer"]
+        G["Recommendation Engine"]
+    end
+
+    subgraph Data Layer
+        D["Spring Data JPA"]
+        E[("PostgreSQL\n(JSONB)")]
+    end
+
+    A -- REST/JSON --> B
+    F -- Authenticates --> B
+    B --> C
+    C --> G
+    C --> D
+    D --> E
 ```
 
 ### Logical Data Layer
