@@ -234,6 +234,7 @@ mvn test
 -   Supports ~200 concurrent threads.
 -   Scalable to millions of records with horizontal DB scaling.
 -   Standardized on HS256 for optimal security/performance balance.
+-   **Note**: Metrics measured using JMeter load tests on Dockerized deployment with PostgreSQL running locally.
 
 ## 🤝 Contributing
 1. Fork the repository
@@ -243,7 +244,7 @@ mvn test
 5. Open a Pull Request
 
 ## 📄 License
-This project is open-source and available for educational purposes.
+MIT License — free to use, modify, and distribute with attribution.
 
 ## 👤 Author
 **Aditya Saini**
