@@ -23,9 +23,9 @@ Java Spring Boot PostgreSQL License
 ## ✨ Features
 ### Core Functionality
 -   🏃‍♂️ **Activity Tracking** - Log diverse fitness activities (Running, Weight Training, Yoga, etc.) with support for dynamic metrics.
--   � **Automated Recommendations** - Extensible engine that analyzes user activities to provide actionable fitness advice and safety tips.
--   � **Secure Authentication** - Integrated Spring Security with JWT (HS256, UUID-based subject) for robust stateless authentication.
--   �️ **Clean Architecture** - Built using the Service-Repository pattern with standardized DTOs and custom Exception Handlers.
+-   🤖 **Automated Recommendations** - Extensible engine that analyzes user activities to provide actionable fitness advice and safety tips.
+-   🔐 **Secure Authentication** - Integrated Spring Security with JWT (HS256, UUID-based subject) for robust stateless authentication.
+-   🏗️ **Clean Architecture** - Built using the Service-Repository pattern with standardized DTOs and custom Exception Handlers.
 -   📊 **Performance Optimized** - Low-latency responses (10ms-50ms) with support for ~200 concurrent threads.
 
 ### Security Features
@@ -152,12 +152,12 @@ docker run -p 8082:8082 \
 
 ## 🔑 Environment Variables
 | Variable | Description |
-| :--- | :--- |
-| `DB_URL` | PostgreSQL JDBC URL |
-| `DB_USER` | DB username |
-| `DB_PWD` | DB password |
-| `JWT_SECRET` | Signing key |
-| `SERVER_PORT` | App port |
+|---------|------------|
+| DB_URL | PostgreSQL JDBC URL |
+| DB_USER | DB username |
+| DB_PWD | DB password |
+| JWT_SECRET | Signing key |
+| SERVER_PORT | App port |
 
 ### Using Environment File
 Alternatively, create a `.env` file (see `.env.example`) and run:
