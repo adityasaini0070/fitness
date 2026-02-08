@@ -12,12 +12,11 @@ Java Spring Boot PostgreSQL License
 - [Features](#-features)
 - [Architecture](#-architecture)
 - [Technology Stack](#-technology-stack)
-- [Getting Started](#-getting-started)
-- [Database Schema](#-database-schema)
-- [Security Features](#-security-features)
-- [API Endpoints](#-api-endpoints)
+- [Environment Variables](#-environment-variables)
+- [Production-Readiness](#-production-readiness)
 - [Testing](#-testing)
 - [Future Roadmap](#-future-roadmap)
+- [GitHub Topics](#-github-topics)
 
 ## ✨ Features
 ### Core Functionality
@@ -144,8 +143,16 @@ docker run -p 8082:8082 \
   fitness
 ```
 
-> [!TIP]
 > Use `host.docker.internal` as the DB host to connect to a PostgreSQL instance running on your host machine (Windows/Mac).
+
+## 🔑 Environment Variables
+| Variable | Description |
+| :--- | :--- |
+| `DB_URL` | PostgreSQL JDBC URL |
+| `DB_USER` | DB username |
+| `DB_PWD` | DB password |
+| `JWT_SECRET` | Signing key |
+| `SERVER_PORT` | App port |
 
 ### Using Environment File
 Alternatively, create a `.env` file (see `.env.example`) and run:
@@ -197,6 +204,14 @@ mvn test
 -   **Integration Tests**: End-to-end voting and activity flows.
 -   **Security Tests**: Authentication and role-gate verification.
 
+## 🏭 Production-Readiness
+- ✅ **Global Exception Handler** (`@ControllerAdvice`) - Standardized error responses.
+- ✅ **Request Validation** (`@Valid`) - Schema enforcement for all inputs.
+- ✅ **Docker multi-stage builds** - Optimized image size.
+- ✅ **Stateless JWT auth** - Scalable session management.
+- ✅ **DB indexing** - Foreign keys & high-traffic columns.
+- ✅ **JSONB GIN indexes** - Performant search on dynamic activity metrics.
+
 ## 🔮 Future Roadmap
 ### Phase 1: Advanced Analytics
 -   Integrate ML models for personalized health insights.
@@ -236,3 +251,6 @@ This project is open-source and available for educational purposes.
 - **Email**: [adityasaini0070@gmail.com](mailto:adityasaini0070@gmail.com)
 
 Built with ❤️ for a healthier world.
+
+## 🏷️ GitHub Topics
+`spring-boot`, `java`, `backend`, `rest-api`, `postgresql`, `docker`, `jwt`, `swagger`, `microservices`
