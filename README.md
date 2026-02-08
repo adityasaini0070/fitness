@@ -167,7 +167,7 @@ docker run -p 8082:8082 --env-file .env fitness
 -   **recommendations** - Automated insights tied to activities or user history.
 
 ### Key Technical Specs
--   **One-Person-One-Vote Enforcement**: Unique constraints on user-activity relations.
+-   **User-Activity Integrity**: Each activity belongs to exactly one authenticated user, enforced via foreign keys and unique constraints.
 -   **Audit Ready**: Timestamps and activity logs for comprehensive tracking.
 
 ## 🔐 Security Features
@@ -201,7 +201,7 @@ Run the full test suite:
 mvn test
 ```
 -   **Unit Tests**: Core business logic validation.
--   **Integration Tests**: End-to-end voting and activity flows.
+-   **Integration Tests**: End-to-end user registration, authentication, activity logging, and recommendation flows.
 -   **Security Tests**: Authentication and role-gate verification.
 
 ## 🏭 Production-Readiness
