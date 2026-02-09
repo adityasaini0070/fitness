@@ -1,16 +1,16 @@
 package com.project.fitness;
 
-import io.github.cdimascio.dotenv.Dotenv;
-import org.springframework.boot.SpringApplication;
+import com.project.fitness.config.DotenvInitializer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class FitnessApplication {
 
     public static void main(String[] args) {
-        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
-        dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
-        SpringApplication.run(FitnessApplication.class, args);
+        new SpringApplicationBuilder(FitnessApplication.class)
+                .initializers(new DotenvInitializer())
+                .run(args);
     }
 
 }
