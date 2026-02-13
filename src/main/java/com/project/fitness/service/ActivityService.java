@@ -19,10 +19,11 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
     private final UserRepository userRepository;
 
-    public ActivityResponse trackActivity(ActivityRequest request) {
+    public ActivityResponse trackActivity(ActivityRequest request, UUID userId) {
 
-        User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new RuntimeException("Invalid user: " + request.getUserId()));
+        @SuppressWarnings("null")
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Invalid user: " + userId));
 
         Activity activity = Activity.builder()
                 .user(user)
@@ -32,6 +33,7 @@ public class ActivityService {
                 .startTime(request.getStartTime())
                 .additionalMetrics(request.getAdditionalMetrics())
                 .build();
+        @SuppressWarnings("null")
         Activity savedActivity = activityRepository.save(activity);
         return mapToResponse(savedActivity);
     }
@@ -50,10 +52,9 @@ public class ActivityService {
         return response;
     }
 
-    public List<ActivityResponse> getUserActivities(String userId) {
+    public List<ActivityResponse> getUserActivities(UUID userId) {
         try {
-            UUID userUUID = UUID.fromString(userId);
-            List<Activity> activityList = activityRepository.findByUserId(userUUID);
+            List<Activity> activityList = activityRepository.findByUserId(userId);
             return activityList.stream()
                     .map(this::mapToResponse)
                     .collect(Collectors.toList());
