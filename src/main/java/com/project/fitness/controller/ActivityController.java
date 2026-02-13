@@ -25,7 +25,7 @@ public class ActivityController {
             @RequestBody ActivityRequest request,
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getName());
+        UUID userId = UUID.fromString(authentication.getPrincipal().toString());
 
         return ResponseEntity.ok(
                 activityService.trackActivity(request, userId));
@@ -35,7 +35,7 @@ public class ActivityController {
     public ResponseEntity<List<ActivityResponse>> getUserActivities(
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getName());
+        UUID userId = UUID.fromString(authentication.getPrincipal().toString());
 
         return ResponseEntity.ok(
                 activityService.getUserActivities(userId));
