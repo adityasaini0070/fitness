@@ -21,10 +21,13 @@ public class RecommendationService {
         private final ActivityRepository activityRepository;
         private final RecommendationRepository recommendationRepository;
 
+        @SuppressWarnings("null")
         public Recommendation generateRecommendation(RecommendationRequest request) {
+                @SuppressWarnings("null")
                 User user = userRepository.findById(UUID.fromString(request.getUserId()))
                                 .orElseThrow(() -> new RuntimeException("user not found " + request.getUserId()));
 
+                @SuppressWarnings("null")
                 Activity activity = activityRepository.findById(UUID.fromString(request.getActivityId()))
                                 .orElseThrow(() -> new RuntimeException(
                                                 "activity not found " + request.getActivityId()));

@@ -62,4 +62,40 @@ public class ActivityService {
             return List.of();
         }
     }
+
+    public void deleteActivity(UUID activityId, UUID userId) {
+
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new RuntimeException("Activity not found"));
+
+        if (!activity.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        activityRepository.delete(activity);
+    }
+
+    public ActivityResponse updateActivity(
+            UUID activityId,
+            ActivityRequest request,
+            UUID userId) {
+
+        Activity activity = activityRepository.findById(activityId)
+                .orElseThrow(() -> new RuntimeException("Activity not found"));
+
+        if (!activity.getUser().getId().equals(userId)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        activity.setType(request.getType());
+        activity.setDuration(request.getDuration());
+        activity.setCaloriesBurned(request.getCaloriesBurned());
+        activity.setStartTime(request.getStartTime());
+        activity.setAdditionalMetrics(request.getAdditionalMetrics());
+
+        Activity updated = activityRepository.save(activity);
+
+        return mapToResponse(updated);
+    }
+
 }

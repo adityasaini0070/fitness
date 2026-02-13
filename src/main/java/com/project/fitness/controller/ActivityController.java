@@ -40,4 +40,29 @@ public class ActivityController {
         return ResponseEntity.ok(
                 activityService.getUserActivities(userId));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteActivity(
+            @PathVariable UUID id,
+            Authentication authentication) {
+
+        UUID userId = UUID.fromString(authentication.getName());
+
+        activityService.deleteActivity(id, userId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ActivityResponse> updateActivity(
+            @PathVariable UUID id,
+            @RequestBody ActivityRequest request,
+            Authentication authentication) {
+
+        UUID userId = UUID.fromString(authentication.getName());
+
+        return ResponseEntity.ok(
+                activityService.updateActivity(id, request, userId));
+    }
+
 }
