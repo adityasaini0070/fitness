@@ -1,15 +1,15 @@
 package com.project.fitness.controller;
 
-import com.project.fitness.dto.RecommendationRequest;
-import com.project.fitness.model.Recommendation;
+import com.project.fitness.dto.RecommendationResponse;
 import com.project.fitness.service.RecommendationService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/recommendation")
+@RequestMapping("/api/recommendations")
 public class RecommendationController {
 
     private final RecommendationService recommendationService;
@@ -18,21 +18,13 @@ public class RecommendationController {
         this.recommendationService = recommendationService;
     }
 
-    @PostMapping("/generate")
-    public ResponseEntity<Recommendation> generateRecommendation(@RequestBody RecommendationRequest request) {
-        Recommendation recommendation = recommendationService.generateRecommendation(request);
-        return ResponseEntity.ok(recommendation);
-    }
+    @GetMapping
+    public ResponseEntity<RecommendationResponse> getRecommendations(
+            Authentication authentication) {
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Recommendation>> getUserRecommendation(@PathVariable String userId) {
-        List<Recommendation> recommendationList = recommendationService.getUserRecommendation(userId);
-        return ResponseEntity.ok(recommendationList);
-    }
+        UUID userId = UUID.fromString(authentication.getPrincipal().toString());
 
-    @GetMapping("/activity/{activityId}")
-    public ResponseEntity<List<Recommendation>> getActivityRecommendation(@PathVariable String activityId) {
-        List<Recommendation> recommendationList = recommendationService.getActivityRecommendation(activityId);
-        return ResponseEntity.ok(recommendationList);
+        return ResponseEntity.ok(
+                recommendationService.generateRecommendations(userId));
     }
 }
