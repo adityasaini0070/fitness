@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+import com.project.fitness.model.UserRole;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +15,7 @@ public class UserResponse {
     private String password;
     private String firstName;
     private String lastName;
+    private UserRole role;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
