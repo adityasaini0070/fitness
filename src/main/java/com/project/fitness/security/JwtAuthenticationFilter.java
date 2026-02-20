@@ -29,6 +29,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        System.out.println("JwtAuthenticationFilter");
         try {
             String jwt = jwtUtils.getJwtFromHeader(request);
 
@@ -38,8 +39,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
 
+                System.out.println("Authorities: "
+                        + userDetails.getAuthorities());
+
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userId, // ✅ principal = UUID string
+                        userDetails,
                         null,
                         userDetails.getAuthorities());
 
