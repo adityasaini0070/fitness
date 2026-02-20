@@ -61,7 +61,7 @@ public class JwtUtils {
                 .getPayload().getSubject();
     }
 
-    public Claims getAllClaims(String jwt){
+    public Claims getAllClaims(String jwt) {
         return Jwts.parser().verifyWith(key())
                 .build().parseSignedClaims(jwt)
                 .getPayload();

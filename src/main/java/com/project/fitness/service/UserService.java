@@ -65,14 +65,16 @@ public class UserService {
         return user;
     }
 
-    /* ================= DTO MAPPER ================= */
-
     public UserResponse mapToResponse(User user) {
+        UserResponse response = new UserResponse();
 
-        return UserResponse.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .role(user.getRole()) // 🔥 FIXED HERE
-                .build();
+        response.setId(user.getId());
+        response.setEmail(user.getEmail());
+        response.setFirstName(user.getFirstName());
+        response.setLastName(user.getLastName());
+        response.setRole(user.getRole());
+        response.setCreatedAt(user.getCreatedAt());
+        response.setUpdatedAt(user.getUpdatedAt());
+        return response;
     }
 }
