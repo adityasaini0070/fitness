@@ -25,7 +25,8 @@ public class ActivityController {
             @RequestBody ActivityRequest request,
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getPrincipal().toString());
+        String email = authentication.getName();
+        UUID userId = activityService.getUserIdFromEmail(email);
 
         return ResponseEntity.ok(
                 activityService.trackActivity(request, userId));
@@ -35,7 +36,8 @@ public class ActivityController {
     public ResponseEntity<List<ActivityResponse>> getUserActivities(
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getPrincipal().toString());
+        String email = authentication.getName();
+        UUID userId = activityService.getUserIdFromEmail(email);
 
         return ResponseEntity.ok(
                 activityService.getUserActivities(userId));
@@ -46,7 +48,8 @@ public class ActivityController {
             @PathVariable UUID id,
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getName());
+        String email = authentication.getName();
+        UUID userId = activityService.getUserIdFromEmail(email);
 
         activityService.deleteActivity(id, userId);
 
@@ -59,10 +62,10 @@ public class ActivityController {
             @RequestBody ActivityRequest request,
             Authentication authentication) {
 
-        UUID userId = UUID.fromString(authentication.getName());
+        String email = authentication.getName();
+        UUID userId = activityService.getUserIdFromEmail(email);
 
         return ResponseEntity.ok(
                 activityService.updateActivity(id, request, userId));
     }
-
 }
